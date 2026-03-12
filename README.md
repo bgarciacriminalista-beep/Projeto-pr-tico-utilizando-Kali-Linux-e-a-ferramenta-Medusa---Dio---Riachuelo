@@ -1,0 +1,2 @@
+# Projeto-pr-tico-utilizando-Kali-Linux-e-a-ferramenta-Medusa---Dio---Riachuelo
+Projeto de CyberSecurity (DIO): Pentest prático utilizando Kali Linux no WSL2 e Metasploitable 2 via Docker. Simulação de ataques de Força Bruta (Brute Force), Password Spraying e automação de login em serviços FTP, SMB e HTTP-Form com a ferramenta Medusa. Inclui documentação de comandos, análise de vulnerabilidades e medidas de mitigação.
